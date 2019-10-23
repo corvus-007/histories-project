@@ -1,0 +1,45 @@
+.modal-slider-progress {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.modal-slider-progress__list {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  height: 4px;
+}
+
+.modal-slider-progress__piece {
+  position: relative;
+  flex-grow: 1;
+  height: 100%;
+  margin-right: 8px;
+  background-color: rgba(#ffffff, 0.4);
+  border-radius: 8px;
+  overflow: hidden;
+
+  &:last-child {
+    margin-right: 0;
+  }
+
+  &--active {
+
+  }
+}
+
+.modal-slider-progress__scale {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 0;
+  background-color: rgba(#ffffff, 1);
+  border-radius: inherit;
+  transition: 0.3s;
+
+  .modal-slider-progress__piece--active & {
+    width: 100%;
+  }
+}

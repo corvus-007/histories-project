@@ -1,0 +1,23 @@
+.modal-slider-controls {
+  position: relative;
+}
+
+.modal-slider-controls__button {
+  position: absolute;
+  top: 0%;
+  height: 100%;
+  width: 50%;
+  appearance: none;
+  -webkit-tap-highlight-color: transparent;
+  opacity: 0;
+  box-sizing: border-box;
+  outline: none;
+
+  &--prev {
+    left: 0;
+  }
+
+  &--next {
+    right: 0;
+  }
+}

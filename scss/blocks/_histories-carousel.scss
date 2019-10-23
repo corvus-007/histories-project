@@ -1,0 +1,29 @@
+.histories-carousel {
+  --n: 1;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 20;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  outline: 8px solid tomato;
+  user-select: none;
+}
+
+.histories-carousel__wrapper {
+  display: flex;
+  width: calc(var(--n) * 100%);
+  height: 100%;
+  transform: translateX(calc(var(--i, 0) / var(--n) * -100% + var(--tx, 0px)));
+
+  .histories-carousel--smooth & {
+    transition: transform calc(var(--f, 1) * 0.5s) ease-out;
+  }
+}
+
+.histories-carousel__slide {
+  flex-shrink: 0;
+  width: calc(100% / var(--n));
+  // pointer-events: none;
+}

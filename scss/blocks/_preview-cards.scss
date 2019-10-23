@@ -1,0 +1,34 @@
+.preview-cards {
+  display: flex;
+  height: 168px;
+  margin: 0;
+  padding: 0;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  list-style: none;
+  overflow: hidden;
+  overflow-x: scroll;
+  -webkit-overflow-scrolling: touch;
+  box-sizing: border-box;
+  // scroll-snap-type: x proximity;
+  // scroll-padding-left: 8px;
+  // scroll-padding-right: 8px;
+}
+
+.preview-cards__item {
+  flex-shrink: 0;
+  height: 100%;
+  padding-left: 8px;
+  padding-right: 8px;
+  box-sizing: border-box;
+  user-select: none;
+  // scroll-snap-align: start;
+
+  &:first-child {
+    padding-left: 20px;
+  }
+
+  &:last-child {
+    padding-right: 20px;
+  }
+}
