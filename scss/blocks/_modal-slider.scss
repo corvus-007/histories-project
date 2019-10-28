@@ -1,13 +1,6 @@
 .modal-slider {
   position: relative;
-  // position: fixed;
-  // top: 0;
-  // left: 0;
-  // right: 0;
-  // bottom: 0;
-  z-index: 10;
   height: 100%;
-  background-color: #26C6DA;
 }
 
 .modal-slider__close {
@@ -18,12 +11,12 @@
   width: 32px;
   height: 32px;
   padding: 0;
-  border: none;
   appearance: none;
   color: #ffffff;
   background: none;
   -webkit-tap-highlight-color: transparent;
   opacity: 0.6;
+  border: none;
   box-sizing: border-box;
   cursor: pointer;
   outline: none;
@@ -80,9 +73,7 @@
   position: relative;
   width: 100%;
   height: 100%;
-  z-index: 1;
   overflow: hidden;
-  // scroll-behavior: smooth;
 }
 
 .modal-slider__slides {
