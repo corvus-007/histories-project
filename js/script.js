@@ -24,7 +24,6 @@ let sliderProgressPieces = null;
 let slidesAmount = 0;
 let currentSlideIndex = 0;
 
-// let mc = null;
 
 const historiesCarousel = document.querySelector('.histories-carousel');
 const historiesCarouselWrapper = historiesCarousel.querySelector(
@@ -51,12 +50,6 @@ function onPreviewCardsElemClick(evt) {
   currentModalId = cardLink.hash;
 
   openHistoriesCarousel(currentModalId);
-
-  if (isModalOpened(currentModalId)) {
-    // closeModalSlider();
-  } else {
-    // openModalSlider(currentModalId);
-  }
 }
 
 function isModalOpened(modalId) {
@@ -72,8 +65,8 @@ function openHistoriesCarousel(modalId) {
 
   size();
 
-  historiesCarousel.addEventListener('mousedown', lock, false);
-  historiesCarousel.addEventListener('touchstart', lock, false);
+  historiesCarousel.addEventListener('mousedown', lock, true);
+  historiesCarousel.addEventListener('touchstart', lock, true);
 
   historiesCarousel.addEventListener(
     'touchmove',
@@ -83,8 +76,8 @@ function openHistoriesCarousel(modalId) {
     false
   );
 
-  historiesCarousel.addEventListener('mouseup', move, false);
-  historiesCarousel.addEventListener('touchend', move, false);
+  historiesCarousel.addEventListener('mouseup', move, true);
+  historiesCarousel.addEventListener('touchend', move, true);
 
   openModalSlider(modalId);
 }
@@ -123,27 +116,13 @@ function openModalSlider(modalId) {
     updateSliderProgress();
   }, 0);
 
-  // mc = new Hammer(modalSlider);
 
   console.log('openModal', currentModalIndex, currentModalId);
-
-  // mc.on('swipeleft', onSliderSwipeleft);
-  // mc.on('swiperight', onSliderSwiperight);
 
   closeBtn.addEventListener('click', onCloseBtnClick);
   sliderPrevBtn.addEventListener('click', onSliderPrevBtnClick);
   sliderNextBtn.addEventListener('click', onSliderNextBtnClick);
 }
-
-// function onSliderSwipeleft(evt) {
-//   console.log('swipeleft');
-//   goToNextModal();
-// }
-
-// function onSliderSwiperight(evt) {
-//   console.log('swiperight');
-//   goToPrevModal();
-// }
 
 function closeModalSlider() {
   resetSliderScrollPosition();
@@ -172,6 +151,7 @@ function onSliderPrevBtnClick(evt) {
     updateSliderProgress();
   } else {
     goToPrevModal();
+    historiesCarousel.style.setProperty('--f', 0.5);
   }
 }
 
@@ -179,14 +159,13 @@ function onSliderNextBtnClick(evt) {
   evt.preventDefault();
   console.log('click next');
 
-  debugger
-
   if (currentSlideIndex + 1 < slidesAmount) {
     currentSlideIndex = currentSlideIndex + 1;
     updateSliderScrollPosition();
     updateSliderProgress();
   } else {
     goToNextModal();
+    historiesCarousel.style.setProperty('--f', 0.5);
   }
 }
 
@@ -241,7 +220,6 @@ function goToPrevModal() {
 }
 
 function goToNextModal() {
-  debugger;
   const hasFollowingModalIndex = currentModalIndex + 1 < modalsAmount;
 
   if (hasFollowingModalIndex) {
@@ -289,8 +267,8 @@ function lock(e) {
 
   locked = true;
 
-  historiesCarousel.addEventListener('mousemove', drag, false);
-  historiesCarousel.addEventListener('touchmove', drag, false);
+  historiesCarousel.addEventListener('mousemove', drag, true);
+  historiesCarousel.addEventListener('touchmove', drag, true);
 }
 
 function drag(e) {
@@ -334,48 +312,4 @@ function move(e) {
 
   historiesCarousel.removeEventListener('mousemove', drag, false);
   historiesCarousel.removeEventListener('touchmove', drag, false);
-}
-
-let initialX = null;
-let initialY = null;
-
-function startTouch(evt) {
-  initialX = evt.touches[0].clientX;
-  initialY = evt.touches[0].clientY;
-}
-
-function moveTouch(evt) {
-  if (initialX === null) {
-    return;
-  }
-
-  if (initialY === null) {
-    return;
-  }
-
-  const currentX = evt.touches[0].clientX;
-  const currentY = initialY - evt.touches[0].clientY;
-
-  const diffX = initialX - currentX;
-  const diffY = initialY - currentY;
-
-  const signX = Math.sign(diffX);
-  const signY = Math.sign(diffY);
-
-  if (Math.abs(diffX) > Math.abs(diffY)) {
-    // sliding horizontally
-    if (signX > 0) {
-      // swipe left
-      console.log('swipe left');
-    } else {
-      console.log('swipe right');
-    }
-  } else {
-    // sliding vertically
-  }
-
-  initialX = null;
-  initialY = null;
-
-  evt.preventDefault();
 }
